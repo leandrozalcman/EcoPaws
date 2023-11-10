@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EcoPaws</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="images/logo.png" type="image/png">
+
+	
+
+	<script>
+		let cart = []; // Array para almacenar los elementos del carrito
+	  
+		// Función para agregar un elemento al carrito
+		function addToCart(productName, price) {
+		  cart.push({ name: productName, price: price });
+		  updateCart();
+		}
+	  
+		// Función para eliminar un elemento del carrito por índice
+		function removeFromCart(index) {
+		  cart.splice(index, 1);
+		  updateCart();
+		}
+	  
+		// Función para actualizar la vista del carrito
+		function updateCart() {
+		  const cartTableBody = document.querySelector("tbody");
+		  const totalElement = document.getElementById("totalPrice");
+		  let totalPrice = 0;
+	  
+		  // Limpiar la vista actual del carrito
+		  while (cartTableBody.firstChild) {
+			cartTableBody.removeChild(cartTableBody.firstChild);
+		  }
+	  
+		  // Actualizar la vista con los elementos del carrito
+		  cart.forEach((item, index) => {
+			const row = cartTableBody.insertRow();
+			const nameCell = row.insertCell(0);
+			const priceCell = row.insertCell(1);
+			const quantityCell = row.insertCell(2);
+			const totalCell = row.insertCell(3);
+			const removeCell = row.insertCell(4);
+	  
+			nameCell.innerHTML = item.name;
+			priceCell.innerHTML = "$" + item.price;
+			quantityCell.innerHTML = 1; // Puedes ajustar la cantidad si es necesario
+			totalCell.innerHTML = "$" + item.price;
+			totalPrice += item.price;
+	  
+			const removeButton = document.createElement("button");
+			removeButton.innerHTML = "Eliminar";
+			removeButton.addEventListener("click", () => removeFromCart(index));
+			removeCell.appendChild(removeButton);
+		  });
+	  
+		  // Actualizar el total
+		  totalElement.innerText = "$" + totalPrice;
+		}
+	  
+		// Llamar a la función de actualización del carrito al cargar la página
+		document.addEventListener("DOMContentLoaded", function () {
+		  updateCart();
+		});
+	  </script>
+	  
+	<script>
+        function validarFormulario() {
+            var servicio = document.getElementById('servicio').value;
+            var nombre = document.getElementById('nombre').value;
+            var apellido = document.getElementById('apellido').value;
+            var email = document.getElementById('email').value;
+            var telefono = document.getElementById('telefono').value;
+            var comentario = document.getElementById('comentario').value;
+
+            if (servicio === "" || nombre === "" || apellido === "" || email === "" || telefono === "" || comentario === "") {
+                alert("Por favor complete todos los campos obligatorios.");
+                return false;
+            }
+
+            var letras = /^[A-Za-z]+$/;
+            if (!nombre.match(letras) || !apellido.match(letras)) {
+                alert("El nombre y el apellido solo pueden contener caracteres alfabéticos.");
+                return false;
+            }
+
+            var numeros = /^[0-9]+$/;
+            if (!telefono.match(numeros)) {
+                alert("El teléfono solo puede contener caracteres numéricos.");
+                return false;
+            }
+
+            if (comentario.length > 500) {
+                alert("El comentario no debe exceder los 500 caracteres.");
+                return false;
+            }
+
+            alert("¡Su mensaje ha sido enviado!");
+            return true;
+        }
+    
+	</script>
+
+	<script>
+		function addToCartWithMessage(productName, price) {
+			addToCart(productName, price); // Llama a la función original para agregar al carrito
+			alert("Producto Agregado. Vaya Abajo para ver el Carrito");
+		}
+	</script>
+
+  </head>
+  <body>
+
+    <div class="wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 d-flex align-items-center">
+						<p class="mb-0 phone pl-md-2">
+							<a href="https://api.whatsapp.com/send?phone=1131062608" target="_blank" class="mr-2"><span class="fa fa-phone mr-1"></span> +54 11 3106 2608</a> 
+							<a href="mailto:proyectoecopaws@gmail.com"><span class="fa fa-paper-plane mr-1"></span> proyectoecopaws@gmail.com</a>
+						</p>
+					</div>
+					<div class="col-md-6 d-flex justify-content-md-end">
+						<div class="social-media">
+							<p class="mb-0 d-flex">
+								<a href="https://www.facebook.com/proyectoecopaws" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+								<a href="https://twitter.com/proyectoecopaws" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+								<a href="https://www.instagram.com/proyectoecopaws/" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+	
+							</p>
+		        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+			<div class="container">
+				<a class="navbar-brand" href="index.html"></a>
+				<img src="images/logo.png">
+				<a class="navbar-brand" href="index.html"><span class="nav-link"></span>EcoPaws</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fa fa-bars"></span> Menu
+			  </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	        	<li class="nav-item active"><a href="index.html" class="nav-link">Inicio</a></li>
+	        	<li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
+	        	<li class="nav-item"><a href="vet.html" class="nav-link">Colaboradores</a></li>
+	        	<li class="nav-item"><a href="services.html" class="nav-link">Servicios</a></li>
+	          <li class="nav-item"><a href="gallery.html" class="nav-link">Galería</a></li>
+	          <li class="nav-item"><a href="pricing.html" class="nav-link">Precios</a></li>
+	          <li class="nav-item"><a href="blog-single.html" class="nav-link">Noticias</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+          <div class="col-md-9 ftco-animate pb-5">
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span>Precios <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Precios</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5 mb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2>Nuestras Suscripciones</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-4 ftco-animate">
+	          <div class="block-7">
+	          	<div class="img" style="background-image: url(images/F15.jpg);"></div>
+	            <div class="text-center p-4">
+	            	<span class="excerpt d-block">EcoPaws Basic</span>
+	            	<span class="price"><sup>$</sup> <span class="number">7.100</span> <sub>/mes</sub></span>
+	            
+		            <ul class="pricing-text mb-5">
+						<li><span class="fa fa-check mr-2"></span>1 juguete para mascotas hecho de materiales reciclados.</li>
+						<li><span class="fa fa-check mr-2"></span>1 paquete de golosinas naturales y orgánicas para mascotas.</li>
+						<li><span class="fa fa-check mr-2"></span>1 artículo de cuidado y aseo para mascotas, como champú o cepillo.</li>
+						<li><span class="fa fa-check mr-2"></span>Acceso a contenido exclusivo sobre sostenibilidad y cuidado de mascotas.</li>
+					  </ul>
+
+	            	<a href="contact.html" class="btn btn-primary d-block px-2 py-3">Reserva Ahora</a>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-md-4 ftco-animate">
+	          <div class="block-7">
+	          	<div class="img" style="background-image: url(images/F1.jpg);"></div>
+	            <div class="text-center p-4">
+	            	<span class="excerpt d-block">EcoPaws Deluxe</span>
+		            <span class="price"><sup>$</sup> <span class="number">9.500</span> <sub>/mes</sub></span>
+		            
+		            <ul class="pricing-text mb-5">
+						<li><span class="fa fa-check mr-2"></span>2 juguetes para mascotas hechos de materiales reciclados.</li>
+						<li><span class="fa fa-check mr-2"></span>1 paquete de golosinas naturales y orgánicas para mascotas.</li>
+						<li><span class="fa fa-check mr-2"></span>1 accesorio adicional para mascotas, como una correa o un collar.</li>
+						<li><span class="fa fa-check mr-2"></span>Acceso a contenido exclusivo sobre sostenibilidad y cuidado de mascotas.</li>
+					  </ul>
+
+		            <a href="contact.html" class="btn btn-primary d-block px-2 py-3">Reserva Ahora</a>
+	            </div>
+	          </div>
+	        </div>
+
+	        <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/image_3.jpg);"></div>
+				  <div class="text-center p-4">
+	            	<span class="excerpt d-block">EcoPaws Premium Plus</span>
+		            <span class="price"><sup>$</sup> <span class="number">14.900</span> <sub>/mes</sub></span>
+		            
+		            <ul class="pricing-text mb-5">
+						<li><span class="fa fa-check mr-2"></span>3 juguetes para mascotas hechos de materiales reciclados.</li>
+						<li><span class="fa fa-check mr-2"></span>1 paquete de golosinas naturales y orgánicas para mascotas.</li>
+						<li><span class="fa fa-check mr-2"></span>2 accesorios adicionales para mascotas, como una correa o una cama.</li>
+						<li><span class="fa fa-check mr-2"></span>Descuentos exclusivos en productos adicionales de EcoPaws.</li>
+					  </ul>
+  
+					  <a href="contact.html" class="btn btn-primary d-block px-2 py-3">Reserva Ahora</a>
+				  </div>
+				</div>
+			  </div>
+
+
+				<div class="container">
+					<div class="row justify-content-center pb-5 mb-3">
+				  <div class="col-md-7 heading-section text-center ftco-animate">
+					<h2>Nuestros Productos</h2>
+				  </div>
+				</div>
+					<div class="row">
+
+						<div class="col-md-4 ftco-animate">
+							<div class="block-7">
+								<div class="img" style="background-image: url(images/Producto1.webp);"></div>
+								<div class="text-center p-4">
+								  <span class="excerpt d-block">Arnés y Correa para Gato - S</span>
+								  <span class="price"><sup>$</sup> <span class="number">13.590</span> 
+								  <ul class="pricing-text mb-5">
+
+								  </ul>
+								  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Arnés y Correa para Gato - S', 13590)">Agregar al Carrito</a>
+							  </div>
+				</div>
+			  </div>
+		
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto2.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Comedero Altura Variable</span>
+					  <span class="price"><sup>$</sup> <span class="number">10.500</span> 
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Comedero Altura Variable', 10500)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto3.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Comedero Waffle</span>
+					  <span class="price"><sup>$</sup> <span class="number">23.590</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Comedero Waffle', 23590)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto4.png);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Rascador De Pelos</span>
+					  <span class="price"><sup>$</sup> <span class="number">8.250</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Rascador De Pelos', 8250)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto5.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Moisés Reversible</span>
+					  <span class="price"><sup>$</sup> <span class="number">27.990</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Moisés Reversible', 27990)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto6.jpg);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Colchoneta Proof Arena - M</span>
+					  <span class="price"><sup>$</sup> <span class="number">19.550</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Colchoneta Proof Arena - M', 19550)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto7.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Cama Little Arena</span>
+					  <span class="price"><sup>$</sup> <span class="number">39.500</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Cama Little Arena', 3900)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto8.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Cucha MPB Eco Sprint - L</span>
+					  <span class="price"><sup>$</sup> <span class="number">80.900</span> 
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Cucha MPB Eco Sprint - L', 80900)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto9.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Comedero Fishbone</span>
+					  <span class="price"><sup>$</sup> <span class="number">23.590</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Comedero Fishbone', 23590)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto10.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Comedero con Dispenser</span>
+					  <span class="price"><sup>$</sup> <span class="number">19.600</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Comedero con Dispenser', 19600)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto11.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Moises Rectangular Arena - L</span>
+					  <span class="price"><sup>$</sup> <span class="number">30.290</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Moises Rectangular Arena - L', 30290)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto12.jpg);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Bolso Explorer Airline </span>
+					  <span class="price"><sup>$</sup> <span class="number">55.500</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Bolso Explorer Airline', 55500)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto13.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Carrito Eva Pet</span>
+					  <span class="price"><sup>$</sup> <span class="number">73.800</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Carrito Eva Pet', 73800)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto14.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Juguete Thor Verde</span>
+					  <span class="price"><sup>$</sup> <span class="number">25.750</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Juguete Thor Verde', 25750)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto15.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Peluche Jirafa con Soga</span>
+					  <span class="price"><sup>$</sup> <span class="number">7.890</span> <sub>/mes</sub></span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Peluche Jirafa con Sogae', 7890)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto16.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Chaleco Dots - M</span>
+					  <span class="price"><sup>$</sup> <span class="number">15.000</span>
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Chaleco Dots - M', 1500)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+
+			  <div class="col-md-4 ftco-animate">
+				<div class="block-7">
+					<div class="img" style="background-image: url(images/Producto17.webp);"></div>
+					<div class="text-center p-4">
+					  <span class="excerpt d-block">Juguete Rasca Encías Violeta</span>
+					  <span class="price"><sup>$</sup> <span class="number">2.700</span> 
+					  <ul class="pricing-text mb-5">
+
+					  </ul>
+					  <a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Juguete Rasca Encías Violeta', 2700)">Agregar al Carrito</a>
+				  </div>
+				</div>
+			  </div>
+
+
+	        <div class="col-md-4 ftco-animate">
+	          <div class="block-7">
+	          	<div class="img" style="background-image: url(images/Producto18.webp);"></div>
+				  <div class="text-center p-4">
+					<span class="excerpt d-block">Juguete Hueso</span>
+					<span class="price"><sup>$</sup> <span class="number">1.800</span> <sub>/mes</sub></span>
+					<ul class="pricing-text mb-5">
+
+					</ul>
+					<a href="#carrito" class="btn btn-primary d-block px-2 py-3" onclick="addToCartWithMessage('Juguete Hueso', 1800)">Agregar al Carrito</a>
+				</div>
+	          </div>
+	        </div>
+	      </div>
+    	</div>
+    </section>
+
+    <section class="ftco-section">
+		<div class="container">
+		  <div class="row justify-content-center">
+			<div class="col-md-6 text-center mb-5">
+			  <h2 class="heading-section">Carrito de Compras</h2>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-12">
+			  <div class="table-responsive">
+				<table class="table">
+				  <thead class="thead-primary">
+					<tr class="text-center">
+					  <th>Producto</th>
+					  <th>Precio</th>
+					  <th>Cantidad</th>
+					  <th>Total</th>
+					  <th>Eliminar</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<!-- Aquí irán los elementos seleccionados en el carrito -->
+				  </tbody>
+				</table>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row justify-content-end">
+			<div class="col-md-5">
+			  <div class="row">
+				<div class="col-md-12 text-center border-bottom mb-5">
+				  <h3 class="heading">Total: <span id="totalPrice">$0</span></h3>
+				</div>
+			  </div>
+			  <!-- Agrega un input para el código promocional y un botón para aplicarlo -->
+<div>
+    <input type="text" id="promoCode" placeholder="Código promocional">
+    <button onclick="applyPromoCode()">Aplicar</button>
+</div>
+
+<script>
+    function applyPromoCode() {
+        const code = document.getElementById('promoCode').value;
+        if (code === 'Eco10') {
+            applyDiscount(10); // Aplica un descuento del 10%
+        } else {
+            alert('El código promocional ingresado no es válido.');
+        }
+    }
+
+    function applyDiscount(discountPercentage) {
+        const cartTableBody = document.querySelector("tbody");
+        const totalElement = document.getElementById("totalPrice");
+        let totalPrice = 0;
+
+        // Calcula el nuevo total aplicando el descuento
+        cart.forEach((item) => {
+            totalPrice += item.price;
+        });
+        const discountedPrice = totalPrice - (totalPrice * discountPercentage) / 100;
+
+        // Muestra el precio total actualizado
+        totalElement.innerText = "$" + discountedPrice;
+    }
+</script>
+			<br>
+			  <p><a href="#" class="btn btn-primary py-3 px-4">Finalizar Compra</a></p>
+			</div>
+		  </div>
+		</div>
+	  </section>
+	  
+			  
+
+    <footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">EcoPaws</h2>
+						<p>En EcoPaws, nos dedicamos apasionadamente a brindar productos sostenibles y de alta calidad para tus adorables compañeros peludos.</p>
+						<ul class="ftco-footer-social p-0">
+              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+            </ul>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">Últimas Noticias</h2>
+						<div class="block-21 mb-4 d-flex">
+              <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a href="blog-single.html">EcoPaws gana el Premio de Innovación Sostenible en la Industria de Mascotas.</a></h3>
+                <div class="meta">
+                  <div><a href="#"><span class="icon-calendar"></span> Junio 7, 2023</a></div>
+                  <div><a href="#"><span class="icon-person"></span></a></div>
+                  <div><a href="#"><span class="icon-chat"></span></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="block-21 mb-4 d-flex">
+              <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a href="blog-single.html">EcoPaws organiza un evento benéfico para recaudar fondos en apoyo a refugios de animales locales.</a></h3>
+                <div class="meta">
+                  <div><a href="#"><span class="icon-calendar"></span> Mayo 5, 2023</a></div>
+                  <div><a href="#"><span class="icon-person"></span> </a></div>
+                  <div><a href="#"><span class="icon-chat"></span></a></div>
+                </div>
+              </div>
+            </div>
+					</div>
+					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+						<h2 class="footer-heading">Enlaces Rápidos</h2>
+						<ul class="list-unstyled">
+							<li><a href="index.html" class="py-2 d-block">Inicio</a></li>
+							<li><a href="about.html" class="py-2 d-block">Nosotros</a></li>
+							<li><a href="services.html" class="py-2 d-block">Servicios</a></li>
+							<li><a href="pricing.html" class="py-2 d-block">Precios</a></li>
+							<li><a href="blog-single.html" class="py-2 d-block">Noticias</a></li>
+							<li><a href="contact.html" class="py-2 d-block">Contacto</a></li>
+            </ul>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">Contacto</h2>
+						<div class="block-23 mb-3">
+							<ul>
+								<li><a href="https://maps.app.goo.gl/oCJ6ewGsNnwZsBoZ6"target="_blank"><span class="icon fa fa-map"></span><span class="text">Carlos Francisco Melo 690, Vicente López, Buenos Aires, Argentina</span></a></li>
+								<li><a href="https://api.whatsapp.com/send?phone=1131062608" target="_blank" ><span class="icon fa fa-phone"></span><span class="text">+54 11 3106 2608</span></a></li>
+								<li><a href="mailto:proyectoecopaws@gmail.com"><span class="icon fa fa-paper-plane"></span><span class="text">proyectoecopaws@gmail.com</span></a></li>
+							  </ul>
+            </div>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-md-12 text-center">
+
+						<p class="copyright">
+			  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Derechos Reservados | Trabajo Práctico UADE
+			  <br>
+			  <img src="images/uade3.png" alt="Logo Uade" style="width: 100px; height: auto;" /> 
+					  </div>
+        </div>
+			</div>
+		</footer>
+
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkoutButton = document.querySelector(".btn.btn-primary.py-3.px-4");
+        checkoutButton.addEventListener("click", function () {
+            const cartTableBody = document.querySelector("tbody");
+            if (cartTableBody.children.length === 0) {
+                alert("No tiene productos para realizar la compra");
+            } else {
+                alert("Su compra ha sido realizada");
+            }
+        });
+    });
+</script>
+
+
+    
+  </body>
+</html>
